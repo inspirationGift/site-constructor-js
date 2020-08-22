@@ -1,0 +1,93 @@
+I. Конфигурация среды
+//////////////////////////////////////////////////////////////////////
+
+
+1. установить вебпак
+2. настроить автоапдейт для веба
+3. настройка зависимостей
+4. npm init
+5. npm i -D webpack webpack-cli webpack-dev-server
+6. file -> webpack.config.js
+(запускается на платформе node.js)
+
+минимальная конфигурация
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+проверка:
+1) webpack
+2) node dist/bundle.js
+
+
+7. Пишем скрипты в package.json
+
+1) Собираем проект
+
+"build": "webpack --mode production"
+проверка - npm run build
+
+"serve": "webpack-dev-server --mode development"
+настройка сервера - апдейт на лету
+
+8. настройка сервера в webpack.config.js
+
+  devServer: {
+    port: 3000,
+  },
+
+9. устанавливаем html (лучше через вебпак)
+
+npm install --save-dev html-webpack-plugin
+
+добавляем зависимость в вебконфиг
+const HTMLWebPackPlugin = require('html-webpack-plugin');
+
+добавляем в конфиг плагин
+  plugins: [
+    new HTMLWebPackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+
+II. Настройка структуры проекта
+//////////////////////////////////////////////////////////////////////
+
+1/ Подключение бутстрап
+добавляю в хед будстрап css (с сайта брать апдейт)
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+a) подключаем стили в index.js
+b) устанавливаем стайл лоадерс npm install --save-dev style-loader css-loader
+c) добавить модули в вебконфиг
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+
+Вывод:
+//////////////////////////////////////////////////////////////////////
+
+- настройка среды разработки и дебага с помощью вебпака
+- установка вебпака на платформе node.js консольной командой npm install
+- настройка webpack.config.js с минимальными параметрами entry (inedex.js) и output для продакшен файла (dist)
+ - конфигурация скриптов npm run в packjage.json для prod - build и разработки - serve
+ - настройка локального сервера с конфигурацией порта в вебпаке и вызова скриптом в serve. Это позволяет мгновенную компиляцию внесенных изменений и отражать в браузере
+- интерпретация html разметки, для этого добавляем плагин в вебпак
+- а также интерпретация css и стивей в модуле вебпака
+
+данная настройка является современной практикой конфигурации среды разработки для веб приложений.
+
+
+
+
