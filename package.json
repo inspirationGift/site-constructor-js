@@ -11,7 +11,7 @@
     "js",
     "javascript"
   ],
-  "author": "Mark <pivonosovm@gmail.com>",
+  "author": "Mark",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^4.2.1",
