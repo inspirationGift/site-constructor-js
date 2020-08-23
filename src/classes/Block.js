@@ -14,13 +14,11 @@ class Block {
 export class TitleBlock extends Block {
   constructor(value, options) {
     super(value, options);
-    this.tag = this.options.tag;
-    this.styles = this.options.styles;
   }
 
   toHTML() {
-
-    return row(col(`<${this.tag}>${this.value}</${this.tag}>`), this.styles);
+    const {tag = 'h2', styles} = this.options;
+    return row(col(`<${tag}>${this.value}</${tag}>`), styles);
   }
 }
 
@@ -52,13 +50,12 @@ export class TextColumnBlock extends Block {
 export class TextBlock extends Block {
   constructor(value, options) {
     super(value, options);
-    this.tag = options.tag;
-    this.styles = options.styles;
   }
 
   toHTML() {
+    const {tag = 'p', styles} = this.options;
     return row(
-        col(`<${this.tag} style="margin-bottom: 0;">${this.value}</${this.tag}>`),
-        this.styles);
+        col(`<${tag} style="margin-bottom: 0;">${this.value}</${tag}>`),
+        styles);
   }
 }

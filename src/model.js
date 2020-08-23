@@ -5,11 +5,18 @@ import {
   TextColumnBlock,
   TitleBlock,
 } from './classes/Block';
+import {css} from './utils';
 
 export const model = [
   new TitleBlock('Конструктор сайтов на JavaScript', {
     tag: 'h2',
-    styles: 'background: linear-gradient(to right, #ff0099, #493240); color: #fff; padding: 1rem; text-align: center;',
+    styles: css({
+      background: 'linear-gradient(to right, #ff0099, #493240)',
+      color: '#fff',
+      padding: '1rem',
+      'text-align': 'center',
+    }),
+    // styles: 'background: linear-gradient(to right, #ff0099, #493240); color: #fff; padding: 1rem; text-align: center;',
   }),
   new ImageBlock(image, {
     alt: 'my image',
